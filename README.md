@@ -54,6 +54,8 @@ Comprehensive profile for each agent including:
 - **Goals & Objectives**: Clear business goals
 - **Scope Definition**: What's in/out of scope
 - **Operational Details**: How the agent works
+- **Dynamic Workflow**: LLM-simulated workflow visualization
+- **Artifacts Modal**: Side-by-side Manifest (YAML) & Agent Card (Markdown)
 - **Inputs & Outputs**: Data flow documentation
 - **Target Personas**: Who uses this agent
 - **Tools & Technologies**: Tech stack used
@@ -61,22 +63,20 @@ Comprehensive profile for each agent including:
 - **KPIs**: Performance metrics with targets and current values
 
 ### 🎨 Premium Design Features
-- **Dark Mode First**: Optimized for modern dark interfaces
-- **Glassmorphism**: Frosted glass effects throughout
+- **Modern UI**: Clean, professional enterprise design
+- **Responsive Layout**: Optimized for all screen sizes
 - **Dynamic Gradients**: Domain-specific color schemes
 - **Micro-animations**: Smooth transitions and hover effects
-- **Custom Scrollbar**: Branded scrollbar design
-- **Grid Background**: Subtle geometric patterns
-- **Glow Effects**: Animated glowing elements
+- **Interactive Elements**: Copy, download, and view capabilities
 
 ## 🛠 Tech Stack
 
-- **Frontend Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: TailwindCSS + Custom CSS
-- **Animations**: Framer Motion
+- **Frontend Framework**: Next.js 16.1 (App Router)
+- **Language**: TypeScript 5.0
+- **Styling**: TailwindCSS 3.4
+- **Animations**: Framer Motion 12.34
 - **Icons**: Lucide React
-- **Fonts**: Inter & Space Grotesk (Google Fonts)
+- **Runtime**: React 19.2
 
 ## 🚀 Getting Started
 
@@ -86,9 +86,10 @@ Comprehensive profile for each agent including:
 
 ### Installation
 
-1. **Clone the repository** (if applicable) or navigate to the project directory:
+1. **Clone the repository**:
    ```bash
-   cd agent-hub
+   git clone https://github.com/YasaswiniDesai0107/Agenthub.git
+   cd Agenthub
    ```
 
 2. **Install dependencies**:
@@ -119,21 +120,25 @@ agent-hub/
 │   ├── agent/
 │   │   └── [id]/
 │   │       └── page.tsx          # Agent detail page
-│   ├── globals.css                # Global styles & design system
+│   ├── main.css                   # Global styles & design system
 │   ├── layout.tsx                 # Root layout with metadata
 │   └── page.tsx                   # Homepage (Marketplace)
 │
 ├── components/
 │   ├── AgentCard.tsx              # Agent card component
-│   ├── SearchBar.tsx              # Search input with animations
+│   ├── ArtifactsModal.tsx         # Manifest & Card viewer
+│   ├── WorkflowGraphic.tsx        # Dynamic workflow visualization
 │   ├── Filters.tsx                # Domain & status filters
 │   └── Stats.tsx                  # Statistics dashboard
 │
 ├── data/
-│   └── mockAgents.ts              # Mock agent data (8 agents)
+│   └── mockAgents.ts              # Mock agent data
 │
 ├── types/
 │   └── agent.ts                   # TypeScript interfaces
+│
+├── utils/
+│   └── agentGenerators.ts         # Manifest & Card generators
 │
 └── public/                        # Static assets
 ```
@@ -141,36 +146,25 @@ agent-hub/
 ## 🎨 Design Philosophy
 
 ### Color Palette
-Our design uses a vibrant, modern color system:
-- **Primary**: Purple gradient (262, 83%, 58%)
-- **Secondary**: Blue gradient (199, 89%, 48%)
-- **Accent**: Pink gradient (340, 82%, 62%)
-- **Background**: Deep charcoal (220, 25%, 8%)
-
-### Domain-Specific Gradients
-Each business domain has its unique gradient:
-- **Customer Experience**: Purple → Pink
-- **Network Operations**: Blue → Cyan
-- **Governance**: Emerald → Teal
-- **Assurance**: Orange → Red
-- **Fulfillment**: Indigo → Purple
-- **Commercial**: Yellow → Orange
-- **Architecture**: Cyan → Blue
+Our design uses a modern, professional color system:
+- **Primary**: Purple (#9333ea)
+- **Secondary**: Blue
+- **Accent**: Green for success states
+- **Background**: Clean white and gray tones
 
 ### Typography
-- **Headings**: Space Grotesk (700)
-- **Body**: Inter (400-600)
-- **Code/Technical**: SF Mono
+- **Headings**: Bold, clear hierarchy
+- **Body**: Inter font family
+- **Code/Technical**: Monospace for technical content
 
 ## 📄 Pages
 
 ### 1. Marketplace (`/`)
 The main landing page featuring:
-- Animated hero section with rotating robot icon
-- Search bar with glow effects
+- Search bar with real-time filtering
 - Statistics dashboard (4 metric cards)
 - Filter sidebar (domains & status)
-- Responsive agent grid (2 columns on desktop)
+- Responsive agent grid
 - Empty state for no results
 
 **Key Interactions**:
@@ -181,12 +175,13 @@ The main landing page featuring:
 
 ### 2. Agent Detail (`/agent/[id]`)
 Comprehensive agent profile featuring:
-- Header with agent icon, name, status, and metadata
+- Header with agent metadata
 - Problem statement section
 - Goals with animated list
+- **Dynamic Workflow Visualization** (NEW)
 - In-scope / Out-of-scope comparison
 - Operational details
-- Inputs & Outputs
+- **Artifacts Modal** with Manifest & Card (NEW)
 - Sidebar with:
   - Target personas
   - Tools & technologies
@@ -194,21 +189,27 @@ Comprehensive agent profile featuring:
   - KPIs with progress tracking
 
 **Key Interactions**:
-- Back to marketplace
-- Smooth scroll sections
-- Animated section reveals
+- View artifacts (Manifest + Agent Card)
+- Copy to clipboard
+- Download YAML/Markdown
+- Interactive workflow visualization
 
 ## 🧩 Components
 
 ### `<AgentCard />`
 Displays agent summary in a card format
 - Props: `agent`, `index`
-- Features: Hover animations, domain gradients, stats preview
+- Features: Hover animations, domain icons, stats preview
 
-### `<SearchBar />`
-Search input with real-time filtering
-- Props: `value`, `onChange`
-- Features: Clear button, glow effect, animations
+### `<ArtifactsModal />` (NEW)
+Side-by-side viewer for Manifest and Agent Card
+- Props: `isOpen`, `onClose`, `manifest`, `agentCard`, `agentName`
+- Features: Copy, download, dual-pane view
+
+### `<WorkflowGraphic />` (NEW)
+Dynamic LLM-simulated workflow visualization
+- Props: `agent`
+- Features: 4-step workflow, runtime metrics, animations
 
 ### `<Filters />`
 Domain and status filter controls
@@ -218,7 +219,7 @@ Domain and status filter controls
 ### `<Stats />`
 Statistics dashboard with metric cards
 - Props: `agents`
-- Features: Animated counters, hover effects, gradient icons
+- Features: Real-time calculations, hover effects
 
 ## 🔮 Future Enhancements
 
@@ -252,27 +253,7 @@ Statistics dashboard with metric cards
 
 ## 📊 Mock Data
 
-The application currently includes **8 diverse AI agents** across different domains:
-
-1. **Customer Sentiment Analyzer** (Customer Experience)
-2. **Network Anomaly Detector** (Network Operations)
-3. **Compliance Documentation Generator** (Governance)
-4. **Service Quality Assurance Bot** (Assurance)
-5. **Order Fulfillment Optimizer** (Fulfillment)
-6. **Dynamic Pricing Engine** (Commercial)
-7. **Cloud Architecture Advisor** (Architecture) - Planned
-8. **Customer Onboarding Assistant** (Customer Experience)
-
-Each agent includes:
-- Complete metadata (owner, version, dates)
-- Problem statement
-- Goals (3-4 per agent)
-- Scope (in/out of scope items)
-- Operational details
-- Inputs & outputs
-- Tools (3-5 per agent)
-- Security controls (4-5 per agent)
-- KPIs with targets and current values
+The application currently includes diverse AI agents across different domains with complete metadata, goals, scope, operational details, tools, security controls, and KPIs.
 
 ## 🎯 Business Domains
 
@@ -314,17 +295,14 @@ This is an internal enterprise tool. For contributions:
 
 ## 📄 License
 
-Internal use only - [Your Company Name]
+Internal use only - Prodapt Solutions
 
 ## 🙋 Support
 
-For questions or issues:
-- **Internal Wiki**: [Link to wiki]
-- **Slack Channel**: #agent-hub
-- **Email**: agent-hub-support@company.com
+For questions or issues, please contact the development team.
 
 ---
 
-**Built with ❤️ by [Your Team Name]**
+**Built with ❤️ for Enterprise AI Agent Management**
 
 *Empowering enterprises to discover, understand, and reuse AI agents at scale.*
