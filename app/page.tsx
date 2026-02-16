@@ -1,63 +1,180 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useMemo, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Bot, Hexagon } from 'lucide-react';
+import AgentCard from '@/components/AgentCard';
+import Filters from '@/components/Filters';
+import Stats from '@/components/Stats';
+import { mockAgents } from '@/data/mockAgents';
+import DualArtifactsModal from '@/components/DualArtifactsModal';
+import { generateManifest, generateAgentCardMarkdown } from '@/utils/agentGenerators';
+import { Agent } from '@/types/agent';
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+  const [activeArtifactAgent, setActiveArtifactAgent] = useState<Agent | null>(null);
+
+  useEffect(() => {
+    const handleOpenArtifacts = (e: any) => {
+      setActiveArtifactAgent(e.detail.agent);
+    };
+    window.addEventListener('open-artifacts', handleOpenArtifacts);
+    return () => window.removeEventListener('open-artifacts', handleOpenArtifacts);
+  }, []);
+
+  // Filter agents based on search and filters
+  const filteredAgents = useMemo(() => {
+    return mockAgents.filter(agent => {
+      // Search filter
+      const matchesSearch =
+        agent.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        agent.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        agent.businessDomain.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        agent.goals.some(goal => goal.toLowerCase().includes(searchQuery.toLowerCase()));
+
+      // Domain filter
+      const matchesDomain = selectedDomains.length === 0 || selectedDomains.includes(agent.businessDomain);
+
+      // Status filter
+      const matchesStatus = selectedStatuses.length === 0 || selectedStatuses.includes(agent.status);
+
+      return matchesSearch && matchesDomain && matchesStatus;
+    });
+  }, [searchQuery, selectedDomains, selectedStatuses]);
+
+  const handleDomainToggle = (domain: string) => {
+    setSelectedDomains(prev =>
+      prev.includes(domain) ? prev.filter(d => d !== domain) : [...prev, domain]
+    );
+  };
+
+  const handleStatusToggle = (status: string) => {
+    setSelectedStatuses(prev =>
+      prev.includes(status) ? prev.filter(s => s !== status) : [...prev, status]
+    );
+  };
+
+  const handleClearFilters = () => {
+    setSelectedDomains([]);
+    setSelectedStatuses([]);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {activeArtifactAgent && (
+        <DualArtifactsModal
+          isOpen={!!activeArtifactAgent}
+          onClose={() => setActiveArtifactAgent(null)}
+          agentName={activeArtifactAgent.name}
+          manifest={generateManifest(activeArtifactAgent)}
+          agentCard={generateAgentCardMarkdown(activeArtifactAgent)}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      )}
+      {/* Enterprise Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div className="container-custom py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+              <Hexagon className="w-5 h-5 text-white fill-current" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gray-900 leading-none">Agent HUB</h1>
+              <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Internal Marketplace</p>
+            </div>
+          </div>
+
+          <div className="flex-1 max-w-xl mx-auto px-8 hidden md:block">
+            <div className="relative group">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-primary transition-colors" />
+              <input
+                type="text"
+                placeholder="Search for agents, capabilities, or domains..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-gray-50 border border-gray-200 text-sm rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="text-sm text-right hidden sm:block">
+              <p className="font-semibold text-gray-900">Prodapt Solutions</p>
+              <p className="text-xs text-gray-500">Enterprise Edition</p>
+            </div>
+            <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center border border-gray-200">
+              <span className="text-xs font-bold text-gray-600">PS</span>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 container-custom py-8">
+
+        {/* Page Title & Stats */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Dashboard Overview</h2>
+          <p className="text-gray-500 mb-6">Real-time metrics for deployed AI agents across the enterprise.</p>
+          <Stats agents={filteredAgents.length > 0 ? filteredAgents : mockAgents} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Sidebar Filters */}
+          <aside className="lg:col-span-1">
+            <Filters
+              selectedDomains={selectedDomains}
+              selectedStatuses={selectedStatuses}
+              onDomainToggle={handleDomainToggle}
+              onStatusToggle={handleStatusToggle}
+              onClearAll={handleClearFilters}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </aside>
+
+          {/* Agent Grid */}
+          <section className="lg:col-span-3">
+            <div className="flex items-center justify-between mb-6 pb-2 border-b border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                Available Agents
+                <span className="bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs font-medium">
+                  {filteredAgents.length}
+                </span>
+              </h3>
+              <div className="text-sm text-gray-500">
+                Sorted by: <span className="font-medium text-gray-900">Relevance</span>
+              </div>
+            </div>
+
+            {/* Agent cards */}
+            {filteredAgents.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {filteredAgents.map((agent, index) => (
+                  <AgentCard key={agent.id} agent={agent} index={index} />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
+                <div className="w-16 h-16 mx-auto mb-4 bg-gray-50 rounded-full flex items-center justify-center">
+                  <Bot className="w-8 h-8 text-gray-300" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">No agents found</h3>
+                <p className="text-gray-500 mb-6 max-w-sm mx-auto">
+                  We couldn't find any agents matching your current filters. Try adjusting your search criteria.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    handleClearFilters();
+                  }}
+                  className="btn btn-primary"
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            )}
+          </section>
         </div>
       </main>
     </div>

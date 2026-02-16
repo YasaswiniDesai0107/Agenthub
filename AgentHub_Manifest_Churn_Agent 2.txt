@@ -1,0 +1,98 @@
+# OASF Agent Record (schema_version: 1.0.0)
+# Notes:
+# - Core record fields and the Agent Spec module below follow the OASF 1.0.0 schema. :contentReference[oaicite:0]{index=0}
+# - The "x_agent_deployment" module is a non-standard/custom module that preserves your original manifest details.
+#   OASF explicitly allows adding arbitrary JSON objects as modules (ideally backed by a custom schema server for validation). :contentReference[oaicite:1]{index=1}
+
+name: "CSM Churn Risk Agent"
+description: "Predicts customer churn risk and triggers retention workflows in CSM"
+version: "1.0.0"
+schema_version: "1.0.0"
+authors:
+  - "Dibyendu Dey <dibyendu.dey@prodapt.com>"
+created_at: "2026-02-08T00:00:00Z"
+
+domains:
+  - name: "retail_and_ecommerce/customer_experience"
+    id: 2001
+  - name: "technology/process_automation/workflow_automation"
+    id: 11002
+
+skills:
+  - name: "tabular_text/tabular_regression"
+    id: 402
+  - name: "tool_interaction/workflow_automation"
+    id: 1402
+  - name: "devops_mlops/monitoring_alerting"
+    id: 1205
+
+locators:
+  # Add real artifact locations when available (repo, container image, helm chart, etc.)
+  - type: "unspecified"
+    urls:
+      - "https://example.invalid/replace-with-real-locator"
+
+modules:
+  # Standard OASF module: Agent Spec (lets you attach Agent Spec config + deployment options)
+  - name: "integration/agentspec"
+    id: 204
+    data:
+      config:
+        type: "url"
+        urls:
+          # Point this to the actual Agent Spec config file (repo path, URL, OCI artifact, etc.)
+          - "https://example.invalid/agentspec/csm-churn-risk.yaml"
+      deployment_options:
+        # Option A: ServiceNow-hosted endpoint (placeholder URL)
+        - name: "servicenow-csm-native"
+          runtime_framework: "langgraph"
+          protocol:
+            type: "Responses_API"
+            url: "https://your-servicenow-instance.example.com/api/agents/csm-churn-risk"
+            model: "csm-churn-risk"
+        # Option B: GCP/GKE-hosted endpoint (placeholder URL)
+        - name: "stack-a-gcp-snowflake"
+          runtime_framework: "langgraph"
+          protocol:
+            type: "Responses_API"
+            url: "https://csm-churn-risk.example.com/responses"
+            model: "heavy_rag_churn_model"
+
+  # Custom module to preserve the original manifest semantics (triggers/ops/targets/artifacts/data links)
+  - x_agent_deployment:
+      agent_id: "csm-churn-risk"
+      domain: "customer-success"
+
+      capabilities:
+        triggers:
+          - "on_customer_account_view"
+          - "on_case_escalation"
+          - "daily_success_plan_scan"
+        operations:
+          - "calculate_churn_score"
+          - "recommend_retention_play"
+          - "create_success_plan_action"
+          - "notify_csm_manager"
+
+      targets:
+        - id: "servicenow-csm-native"
+          type: "platform"
+          platform: "ServiceNow"
+          modules: ["CSM", "NowAssist"]
+          trigger_tables: ["customer_account", "case", "success_plan"]
+          runtime_artifacts:
+            - "now_assist_agent_config"
+            - "virtual_agent_topic"
+            - "csm_workspace_panel"
+            - "flow_designer_flow"
+          data_connections:
+            - "snowflake_finance_metrics"
+            - "snowflake_usage_data"
+          outbound_to: ["stack-a-gcp-snowflake"]
+
+        - id: "stack-a-gcp-snowflake"
+          type: "cloud"
+          cloud_provider: "GCP"
+          runtime: "GKE"
+          data_backend: "Snowflake"
+          provides: "heavy_rag_churn_model"
