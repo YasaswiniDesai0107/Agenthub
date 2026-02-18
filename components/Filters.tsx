@@ -5,6 +5,7 @@ import { Filter, X, Check } from 'lucide-react';
 import { AgentStatus } from '@/types/agent';
 
 interface FiltersProps {
+    domains: string[];           // dynamic — passed from parent based on loaded agents
     selectedDomains: string[];
     selectedStatuses: string[];
     onDomainToggle: (domain: string) => void;
@@ -12,19 +13,14 @@ interface FiltersProps {
     onClearAll: () => void;
 }
 
-const domains = [
-    'Customer Experience',
-    'Network Operations',
-    'Governance',
-    'Assurance',
-    'Fulfillment',
-    'Commercial',
-    'Architecture'
+const statuses: { value: AgentStatus; label: string }[] = [
+    { value: 'upcoming', label: 'Upcoming' },
+    { value: 'wip', label: 'Work In Progress' },
+    { value: 'deployed', label: 'Deployed' }
 ];
 
-const statuses: AgentStatus[] = ['active', 'planned', 'deprecated', 'production'];
-
 export default function Filters({
+    domains,
     selectedDomains,
     selectedStatuses,
     onDomainToggle,
@@ -55,7 +51,7 @@ export default function Filters({
             {/* Business Domains */}
             <div className="mb-8">
                 <p className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">Business Domain</p>
-                <div className="space-y-2">
+                <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
                     {domains.map((domain) => {
                         const isSelected = selectedDomains.includes(domain);
                         return (
@@ -70,8 +66,8 @@ export default function Filters({
                                     }
                                 `}
                             >
-                                {domain}
-                                {isSelected && <Check className="w-4 h-4 text-primary" />}
+                                <span className="text-left leading-tight">{domain}</span>
+                                {isSelected && <Check className="w-4 h-4 text-primary shrink-0 ml-1" />}
                             </button>
                         );
                     })}
@@ -82,12 +78,12 @@ export default function Filters({
             <div>
                 <p className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">Status</p>
                 <div className="flex flex-wrap gap-2">
-                    {statuses.map((status) => {
-                        const isSelected = selectedStatuses.includes(status);
+                    {statuses.map((statusObj) => {
+                        const isSelected = selectedStatuses.includes(statusObj.value);
                         return (
                             <button
-                                key={status}
-                                onClick={() => onStatusToggle(status)}
+                                key={statusObj.value}
+                                onClick={() => onStatusToggle(statusObj.value)}
                                 className={`
                                     px-3 py-1.5 rounded-md text-xs font-medium border capitalize transition-all duration-200
                                     ${isSelected
@@ -96,7 +92,7 @@ export default function Filters({
                                     }
                                 `}
                             >
-                                {status}
+                                {statusObj.label}
                             </button>
                         );
                     })}

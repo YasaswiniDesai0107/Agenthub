@@ -10,7 +10,7 @@ interface StatsProps {
 
 export default function Stats({ agents }: StatsProps) {
     const totalAgents = agents.length;
-    const activeAgents = agents.filter(a => a.status === 'active').length;
+    const deployedAgents = agents.filter(a => a.status === 'deployed').length;
     const totalDomains = new Set(agents.map(a => a.businessDomain)).size;
     const totalViews = agents.reduce((sum, a) => sum + a.viewCount, 0);
 
@@ -21,8 +21,8 @@ export default function Stats({ agents }: StatsProps) {
             icon: Bot,
         },
         {
-            label: 'Active Agents',
-            value: activeAgents,
+            label: 'Deployed Agents',
+            value: deployedAgents,
             icon: TrendingUp,
         },
         {
