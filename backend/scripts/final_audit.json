@@ -1,0 +1,228 @@
+﻿{
+  "rowCount": 106,
+  "tables": [
+    "agent_card",
+    "agent_manifest",
+    "agents",
+    "audit_logs",
+    "refresh_tokens",
+    "roles",
+    "users"
+  ],
+  "agentsSchema": [
+    {
+      "field": "id",
+      "type": "char(36)",
+      "null": "NO",
+      "default": null
+    },
+    {
+      "field": "name",
+      "type": "varchar(150)",
+      "null": "NO",
+      "default": null
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "short_description",
+      "type": "varchar(500)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "domain",
+      "type": "varchar(100)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "version",
+      "type": "varchar(20)",
+      "null": "YES",
+      "default": "1.0.0"
+    },
+    {
+      "field": "status",
+      "type": "enum('UPCOMING','WORK_IN_PROGRESS','DEPLOYED')",
+      "null": "YES",
+      "default": "UPCOMING"
+    },
+    {
+      "field": "owner_id",
+      "type": "char(36)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "created_by",
+      "type": "char(36)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "updated_by",
+      "type": "char(36)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "view_count",
+      "type": "int",
+      "null": "YES",
+      "default": "0"
+    },
+    {
+      "field": "is_archived",
+      "type": "tinyint(1)",
+      "null": "YES",
+      "default": "0"
+    },
+    {
+      "field": "created_at",
+      "type": "timestamp",
+      "null": "YES",
+      "default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "field": "updated_at",
+      "type": "timestamp",
+      "null": "YES",
+      "default": "CURRENT_TIMESTAMP"
+    }
+  ],
+  "sampleRow": {
+    "id": "037a5e1b-d962-4b4b-8359-9a2ce3b612ad",
+    "name": "Ticket Categorization Agent",
+    "description": "Classifies and routes work items to the correct queue, team, or workflow to minimize triage delays.",
+    "short_description": "Classifies and routes work items to the correct queue, team, or workflow to minimize triage delays",
+    "domain": "NOC engineer, Technical support engr",
+    "version": "1.0.0",
+    "status": "UPCOMING",
+    "owner_id": "usr-001",
+    "created_by": null,
+    "updated_by": null,
+    "view_count": "0",
+    "is_archived": "0",
+    "created_at": "Wed Feb 18 2026 18:35:25 GMT+0530 (India Standard Time)",
+    "updated_at": "Wed Feb 18 2026 18:35:25 GMT+0530 (India Standard Time)"
+  },
+  "manifestSchema": [
+    {
+      "field": "id",
+      "type": "char(36)"
+    },
+    {
+      "field": "agent_id",
+      "type": "char(36)"
+    },
+    {
+      "field": "manifest_json",
+      "type": "json"
+    },
+    {
+      "field": "schema_version",
+      "type": "varchar(20)"
+    },
+    {
+      "field": "created_at",
+      "type": "timestamp"
+    },
+    {
+      "field": "updated_at",
+      "type": "timestamp"
+    }
+  ],
+  "manifestCount": 106,
+  "manifestSample": {
+    "id": "00910db7-c341-4c71-af62-539a0a6c81d9",
+    "agent_id": "cef68c85-5499-4b17-9dc7-28f2826151f8",
+    "manifest_json": "[object Object]",
+    "schema_version": "1.0",
+    "created_at": "Wed Feb 18 2026 18:35:25 GMT+0530 (India Standard Time)",
+    "updated_at": "Wed Feb 18 2026 18:35:25 GMT+0530 (India Standard Time)"
+  },
+  "cardSchema": [
+    {
+      "field": "id",
+      "type": "char(36)"
+    },
+    {
+      "field": "agent_id",
+      "type": "char(36)"
+    },
+    {
+      "field": "markdown_content",
+      "type": "longtext"
+    },
+    {
+      "field": "created_at",
+      "type": "timestamp"
+    },
+    {
+      "field": "updated_at",
+      "type": "timestamp"
+    }
+  ],
+  "cardCount": 106,
+  "cardSample": {
+    "id": "02953eef-5b1c-4097-a20d-14402a46eb21",
+    "agent_id": "113bd730-07aa-46b5-8172-0754c4b32eba",
+    "markdown_content": "\n# Fault Localization Agent\n\n**ID:** A-030 | **Domain:** Assurance & Reliability | **Version:** 1.0.0 | **Status:** UPCOMING\n\n---\n\n### **Overview**\nProvides specialized noc / assurance operational support capabilities.\n\n### **Goals & Objectives**\n- ΓÇó Improve operational efficiency and consistency.\n-",
+    "created_at": "Wed Feb 18 2026 18:35:25 GMT+0530 (India Standard Time)",
+    "updated_at": "Wed Feb 18 2026 18:35:25 GMT+0530 (India Standard Time)"
+  },
+  "nullChecks": {
+    "null_short_desc": "0",
+    "null_desc": "0",
+    "null_domain": "0",
+    "null_status": "0",
+    "null_version": "0"
+  },
+  "fiveSamples": [
+    {
+      "id": "037a5e1b-d962-4b4b-8359-9a2ce3b612ad",
+      "name": "Ticket Categorization Agent",
+      "domain": "NOC engineer, Technical support engr",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Classifies and routes work items to the correct queue, team, or workflow to minimize triage delays"
+    },
+    {
+      "id": "037f4baf-c51e-45e8-a5d8-8ac34587bbfd",
+      "name": "Post-Incident Review Writer",
+      "domain": "Assurance & Reliability",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Provides specialized noc / assurance operational support capabilities"
+    },
+    {
+      "id": "06fd7320-66f0-4b7e-a57d-84a9b7984cae",
+      "name": "MDS Validator",
+      "domain": "Technical support engr",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Validates records, configurations, or outcomes against business rules, standards, and policy controls"
+    },
+    {
+      "id": "0733674d-87c4-4a04-a0ca-9c95f934c2b5",
+      "name": "Change Impact Simulator",
+      "domain": "Assurance & Reliability",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Provides specialized noc / assurance operational support capabilities"
+    },
+    {
+      "id": "0c5f6fdd-3747-49a5-8e6c-fda0b144485b",
+      "name": "Ticket/Order parser",
+      "domain": "Project Managers & SDM",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Parses intake artifacts and extracts structured metadata to populate systems and downstream workflows"
+    }
+  ]
+}

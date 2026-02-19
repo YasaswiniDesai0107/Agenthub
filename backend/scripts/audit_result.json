@@ -1,0 +1,228 @@
+﻿{
+  "rowCount": 106,
+  "tables": [
+    "agent_card",
+    "agent_manifest",
+    "agents",
+    "audit_logs",
+    "refresh_tokens",
+    "roles",
+    "users"
+  ],
+  "agentsSchema": [
+    {
+      "field": "id",
+      "type": "char(36)",
+      "null": "NO",
+      "default": null
+    },
+    {
+      "field": "name",
+      "type": "varchar(150)",
+      "null": "NO",
+      "default": null
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "short_description",
+      "type": "varchar(500)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "domain",
+      "type": "varchar(100)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "version",
+      "type": "varchar(20)",
+      "null": "YES",
+      "default": "1.0.0"
+    },
+    {
+      "field": "status",
+      "type": "enum('UPCOMING','WORK_IN_PROGRESS','DEPLOYED')",
+      "null": "YES",
+      "default": "UPCOMING"
+    },
+    {
+      "field": "owner_id",
+      "type": "char(36)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "created_by",
+      "type": "char(36)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "updated_by",
+      "type": "char(36)",
+      "null": "YES",
+      "default": null
+    },
+    {
+      "field": "view_count",
+      "type": "int",
+      "null": "YES",
+      "default": "0"
+    },
+    {
+      "field": "is_archived",
+      "type": "tinyint(1)",
+      "null": "YES",
+      "default": "0"
+    },
+    {
+      "field": "created_at",
+      "type": "timestamp",
+      "null": "YES",
+      "default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "field": "updated_at",
+      "type": "timestamp",
+      "null": "YES",
+      "default": "CURRENT_TIMESTAMP"
+    }
+  ],
+  "sampleRow": {
+    "id": "01370c07-9e53-4cda-aa71-ca7fc96fc687",
+    "name": "Change Impact Simulator",
+    "description": "Provides specialized noc / assurance operational support capabilities.",
+    "short_description": "Provides specialized noc / assurance operational support capabilities",
+    "domain": "Assurance & Reliability",
+    "version": "1.0.0",
+    "status": "UPCOMING",
+    "owner_id": "usr-001",
+    "created_by": null,
+    "updated_by": null,
+    "view_count": "17",
+    "is_archived": "0",
+    "created_at": "Wed Feb 18 2026 15:05:26 GMT+0530 (India Standard Time)",
+    "updated_at": "Wed Feb 18 2026 18:22:29 GMT+0530 (India Standard Time)"
+  },
+  "manifestSchema": [
+    {
+      "field": "id",
+      "type": "char(36)"
+    },
+    {
+      "field": "agent_id",
+      "type": "char(36)"
+    },
+    {
+      "field": "manifest_json",
+      "type": "json"
+    },
+    {
+      "field": "schema_version",
+      "type": "varchar(20)"
+    },
+    {
+      "field": "created_at",
+      "type": "timestamp"
+    },
+    {
+      "field": "updated_at",
+      "type": "timestamp"
+    }
+  ],
+  "manifestCount": 106,
+  "manifestSample": {
+    "id": "01a353f6-3b49-45b8-be69-b18df593de5f",
+    "agent_id": "c37a7969-1938-4fab-9349-28107189a6fe",
+    "manifest_json": "[object Object]",
+    "schema_version": "1.0",
+    "created_at": "Wed Feb 18 2026 15:05:26 GMT+0530 (India Standard Time)",
+    "updated_at": "Wed Feb 18 2026 15:05:26 GMT+0530 (India Standard Time)"
+  },
+  "cardSchema": [
+    {
+      "field": "id",
+      "type": "char(36)"
+    },
+    {
+      "field": "agent_id",
+      "type": "char(36)"
+    },
+    {
+      "field": "markdown_content",
+      "type": "longtext"
+    },
+    {
+      "field": "created_at",
+      "type": "timestamp"
+    },
+    {
+      "field": "updated_at",
+      "type": "timestamp"
+    }
+  ],
+  "cardCount": 106,
+  "cardSample": {
+    "id": "0287b367-37c8-4ed5-bfc9-621b7ea18bd9",
+    "agent_id": "ed0607bb-7d3d-4ac8-8c70-e25ec652fa4d",
+    "markdown_content": "\n# InsightsHub\n\n### **Business Domain**\nCX Analyst\n\n### **Overview**\nAnalyzes operational data to surface trends, anomalies, and actionable insights for decision-making.\n\n---\n\n### **Key Features**\n- Tag: From Image\n- Domain: CX\n- Process: eTOM: Customer Relationship Management | ITIL: Customer Servi",
+    "created_at": "Wed Feb 18 2026 15:05:25 GMT+0530 (India Standard Time)",
+    "updated_at": "Wed Feb 18 2026 15:05:25 GMT+0530 (India Standard Time)"
+  },
+  "nullChecks": {
+    "null_short_desc": "0",
+    "null_desc": "0",
+    "null_domain": "0",
+    "null_status": "0",
+    "null_version": "0"
+  },
+  "fiveSamples": [
+    {
+      "id": "01370c07-9e53-4cda-aa71-ca7fc96fc687",
+      "name": "Change Impact Simulator",
+      "domain": "Assurance & Reliability",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Provides specialized noc / assurance operational support capabilities"
+    },
+    {
+      "id": "018f4045-5859-4ff6-af3d-82f60e661405",
+      "name": "Major Incident Commander Assistant",
+      "domain": "Assurance & Reliability",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Coordinates cross-team activities, approvals, and communications to keep delivery/assurance work on track"
+    },
+    {
+      "id": "02cf1354-0c3d-4c2d-929e-cb53dfab588f",
+      "name": "Change coordinator",
+      "domain": "Project Managers & SDM",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Coordinates cross-team activities, approvals, and communications to keep delivery/assurance work on track"
+    },
+    {
+      "id": "07586908-f7f3-401b-a48a-726a793b5285",
+      "name": "Correlation Agent",
+      "domain": "NOC engineer",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Correlates alarms/events into deduplicated incidents and identifies likely causal relationships"
+    },
+    {
+      "id": "086f813d-4587-4e64-af94-91b7e42285b3",
+      "name": "Problem Management Coordinator",
+      "domain": "Assurance & Reliability",
+      "status": "UPCOMING",
+      "version": "1.0.0",
+      "short_description": "Coordinates cross-team activities, approvals, and communications to keep delivery/assurance work on track"
+    }
+  ]
+}

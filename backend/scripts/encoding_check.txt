@@ -1,0 +1,24 @@
+﻿String: ╬ô├ç├│
+Length: 3
+  char[0]: '╬ô' = U+0393
+  char[1]: '├ç' = U+00C7
+  char[2]: '├│' = U+00F3
+
+Bullet ΓÇó: ΓÇó
+Bullet codepoint: U+2022
+
+After replace: ΓÇó
+
+
+Raw goals from xlsx: "ΓÇó Detect compliance and quality deviations early.\r"
+Goals chars:
+  [0]: 'ΓÇó' U+2022
+  [1]: ' ' U+0020
+  [2]: 'D' U+0044
+  [3]: 'e' U+0065
+  [4]: 't' U+0074
+  [5]: 'e' U+0065
+  [6]: 'c' U+0063
+  [7]: 't' U+0074
+  [8]: ' ' U+0020
+  [9]: 'c' U+0063
