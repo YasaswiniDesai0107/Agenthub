@@ -1,0 +1,273 @@
+﻿AGENT: Change Impact Simulator
+MANIFEST JSON (raw type): object
+
+MANIFEST TOP-LEVEL KEYS: [
+  'name',
+  'domain',
+  'status',
+  'version',
+  'description',
+  'x_agent_hub_extra'
+]
+
+FULL MANIFEST:
+{
+  "name": "Change Impact Simulator",
+  "domain": "Assurance & Reliability",
+  "status": "UPCOMING",
+  "version": "1.0.0",
+  "description": "Provides specialized noc / assurance operational support capabilities.",
+  "x_agent_hub_extra": {
+    "kpis": [
+      {
+        "name": "ΓÇó MTTR (minutes/hours)",
+        "target": "TBD"
+      },
+      {
+        "name": "ΓÇó SLA compliance (%)",
+        "target": "TBD"
+      },
+      {
+        "name": "ΓÇó First-time-right resolution (%)",
+        "target": "TBD"
+      },
+      {
+        "name": "ΓÇó Alarm-to-ticket time",
+        "target": "TBD"
+      }
+    ],
+    "goals": [
+      "ΓÇó Improve operational efficiency and consistency.",
+      "ΓÇó Reduce MTTR/lead time and increase quality of outcomes."
+    ],
+    "tools": [
+      {
+        "name": "ΓÇó ServiceNow ITSM",
+        "description": ""
+      },
+      {
+        "name": "ΓÇó OSS fault/perf/NMS",
+        "description": ""
+      },
+      {
+        "name": "ΓÇó CMDB/topology",
+        "description": ""
+      },
+      {
+        "name": "ΓÇó Observability (logs/metrics)",
+        "description": ""
+      },
+      {
+        "name": "ΓÇó KB/runbooks",
+        "description": ""
+      },
+      {
+        "name": "ΓÇó ChatOps",
+        "description": ""
+      }
+    ],
+    "inputs": [
+      "ΓÇó Incident/ticket record",
+      "ΓÇó Alarms/events",
+      "ΓÇó Topology/CMDB relationships",
+      "ΓÇó Performance and log data"
+    ],
+    "inScope": [
+      "ΓÇó Read relevant records and telemetry to perform assigned function.",
+      "ΓÇó Write recommendations",
+      "validations",
+      "and status updates to the system of record."
+    ],
+    "outputs": [
+      "ΓÇó Ticket updates (work notes",
+      "resolution",
+      "RCA hints)",
+      "ΓÇó Recommended remediation steps",
+      "ΓÇó Escalation notifications"
+    ],
+    "features": [
+      "Tag: Added",
+      "Domain: NOC / Assurance",
+      "Process: eTOM: Service Configuration & Activation | ITIL: Change Enablement",
+      "Archetype: General",
+      "Autonomy: Assistive"
+    ],
+    "personas": [],
+    "outOfScope": [
+      "ΓÇó Make irreversible changes (deletes",
+      "billing credits",
+      "config changes) without explicit approval.",
+      "ΓÇó Bypass defined process controls or compliance requirements."
+    ],
+    "problemStatement": "Provides specialized noc / assurance operational support capabilities.",
+    "securityControls": [
+      "ΓÇó Data sensitivity: Confidential (customer + network data).",
+      "ΓÇó Minimum required access only (least privilege) via RBAC",
+      "no credential sharing.",
+      "ΓÇó All writes to ITSM/CRM must be logged with before/after values and user/agent identity."
+    ],
+    "operationalDetails": "Workflow:\nΓÇó Collect context and required data.\r\nΓÇó Perform the agentΓÇÖs core function and document results.\r\nΓÇó Update the system of record and notify stakeholders.\n\nDefinition of Done:\nΓÇó System of record updated with decision/status and evidence., ΓÇó Approvals captured where required, stakeholders notified per policy.\
+
+
+CARD CONTENT (first 500 chars):
+
+# Change Impact Simulator
+
+### **Business Domain**
+Assurance & Reliability
+
+### **Overview**
+Provides specialized noc / assurance operational support capabilities.
+
+---
+
+### **Key Features**
+- Tag: Added
+- Domain: NOC / Assurance
+- Process: eTOM: Service Configuration & Activation | ITIL: Change Enablement
+- Archetype: General
+- Autonomy: Assistive
+
+### **Goals**
+- ΓÇó Improve operational efficiency and consistency.
+- ΓÇó Reduce MTTR/lead time and increase quality of outcomes.
+
+### **Workflow & Imp
+
+
+=== CHECKING x_agent_hub_extra IN FIRST 5 MANIFESTS ===
+
+Manifest 1 top-level keys: [
+  'name',
+  'domain',
+  'status',
+  'version',
+  'description',
+  'x_agent_hub_extra'
+]
+  x_agent_hub_extra keys: [
+  'kpis',
+  'goals',
+  'tools',
+  'inputs',
+  'inScope',
+  'outputs',
+  'features',
+  'personas',
+  'outOfScope',
+  'problemStatement',
+  'securityControls',
+  'operationalDetails'
+]
+  goals: ["ΓÇó Coordinate cross-team execution and approvals to remove blockers quickly.","ΓÇó Ensure communicati
+  features: ["Tag: Added","Domain: Service Delivery / Fulfillment","Process: eTOM: Service Configuration & Activ
+  personas: []
+  techStack: []
+
+Manifest 2 top-level keys: [
+  'name',
+  'domain',
+  'status',
+  'version',
+  'description',
+  'x_agent_hub_extra'
+]
+  x_agent_hub_extra keys: [
+  'kpis',
+  'goals',
+  'tools',
+  'inputs',
+  'inScope',
+  'outputs',
+  'features',
+  'personas',
+  'outOfScope',
+  'problemStatement',
+  'securityControls',
+  'operationalDetails'
+]
+  goals: ["ΓÇó Assign work to the correct resolver group/workflow on first pass.","ΓÇó Reduce mean time to triage
+  features: ["Tag: From Image","Domain: Service Assurance","Process: eTOM: Cross-Domain | ITIL: Operations Suppo
+  personas: []
+  techStack: []
+
+Manifest 3 top-level keys: [
+  'name',
+  'domain',
+  'status',
+  'version',
+  'description',
+  'x_agent_hub_extra'
+]
+  x_agent_hub_extra keys: [
+  'kpis',
+  'goals',
+  'tools',
+  'inputs',
+  'inScope',
+  'outputs',
+  'features',
+  'personas',
+  'outOfScope',
+  'problemStatement',
+  'securityControls',
+  'operationalDetails'
+]
+  goals: ["ΓÇó Ensure records/configurations meet required completeness and policy rules before progressing.","
+  features: ["Tag: Added","Domain: Service Design","Process: eTOM: Service Development & Management | ITIL: Serv
+  personas: []
+  techStack: []
+
+Manifest 4 top-level keys: [
+  'name',
+  'domain',
+  'status',
+  'version',
+  'description',
+  'x_agent_hub_extra'
+]
+  x_agent_hub_extra keys: [
+  'kpis',
+  'goals',
+  'tools',
+  'inputs',
+  'inScope',
+  'outputs',
+  'features',
+  'personas',
+  'outOfScope',
+  'problemStatement',
+  'securityControls',
+  'operationalDetails'
+]
+  goals: ["ΓÇó Ensure records/configurations meet required completeness and policy rules before progressing.","
+  features: ["Tag: From Image","Domain: Governance / Quality","Process: eTOM: Cross-Domain | ITIL: Operations Su
+  personas: []
+  techStack: []
+
+Manifest 5 top-level keys: [
+  'name',
+  'domain',
+  'status',
+  'version',
+  'description',
+  'x_agent_hub_extra'
+]
+  x_agent_hub_extra keys: [
+  'kpis',
+  'goals',
+  'tools',
+  'inputs',
+  'inScope',
+  'outputs',
+  'features',
+  'personas',
+  'outOfScope',
+  'problemStatement',
+  'securityControls',
+  'operationalDetails'
+]
+  goals: ["ΓÇó Ensure records/configurations meet required completeness and policy rules before progressing.","
+  features: ["Tag: From Image","Domain: Service Assurance","Process: eTOM: Cross-Domain | ITIL: Operations Suppo
+  personas: []
+  techStack: []

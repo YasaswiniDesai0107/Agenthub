@@ -1,0 +1,71 @@
+﻿=== EXCEL COLUMN HEADERS ===
+[
+  "Agent ID",
+  "Agent Name",
+  "Category",
+  "Description",
+  "Features",
+  "Goals",
+  "DoD (Definition of Done)",
+  "In scope",
+  "Out of scope",
+  "Inputs",
+  "Outputs",
+  "Triggers",
+  "Workflow",
+  "Tools",
+  "Security",
+  "KPIs",
+  "Guardrails",
+  "Examples",
+  "Dependencies",
+  "Impl notes"
+]
+
+=== FIRST ROW FULL DATA ===
+{
+  "Agent ID": "A-001",
+  "Agent Name": "CallAudit agent",
+  "Category": "CX Analyst",
+  "Description": "Audits operational work products and interactions to ensure compliance, quality standards, and continuous improvement.",
+  "Features": "Tag: From Image; Domain: CX; Process: eTOM: Risk & Compliance, Customer Relationship Management | ITIL: Information Security Management, Customer Service Management; Archetype: Audit/QA; Autonomy: Assistive / Semi-autonomous",
+  "Goals": "ΓÇó Detect compliance and quality deviations early.\r\nΓÇó Produce audit evidence, scorecards, and coaching feedback.\r\nΓÇó Drive continuous improvement through trend insights.",
+  "DoD (Definition of Done)": "ΓÇó System of record updated with decision/status and evidence.\r\nΓÇó Approvals captured where required; stakeholders notified per policy.",
+  "In scope": "ΓÇó Read-only analysis of records/interactions and generation of findings.\r\nΓÇó Suggest remediation or coaching actions.",
+  "Out of scope": "ΓÇó Directly modify closed records without change control.\r\nΓÇó Expose sensitive customer data in reports.",
+  "Inputs": "ΓÇó Call/email/chat transcripts\r\nΓÇó Customer profile and entitlements\r\nΓÇó Policy/KB articles",
+  "Outputs": "ΓÇó Quality/compliance scorecards\r\nΓÇó Coaching tips\r\nΓÇó Case updates and summaries",
+  "Triggers": "ΓÇó New contact/case interaction\r\nΓÇó Policy keyword detected (compliance trigger)\r\nΓÇó Daily QA sampling run\r\nΓÇó Invoked by user from a workspace (ITSM/CRM/ChatOps)",
+  "Workflow": "ΓÇó Select the sample set based on audit plan and risk criteria.\r\nΓÇó Collect evidence (transcripts, ticket notes, approvals, logs).\r\nΓÇó Evaluate against checklist/policy and score each criterion.\r\nΓÇó Identify defects, compliance issues, and coaching opportunities.\r\nΓÇó Generate audit report and route findings to owners.",
+  "Tools": "ΓÇó CRM/CSM\r\nΓÇó Contact center transcripts\r\nΓÇó Policy/KB\r\nΓÇó ChatOps/Email\r\nΓÇó QA dashboards",
+  "Security": "ΓÇó Data sensitivity: Confidential (customer + network data).\r\nΓÇó Minimum required access only (least privilege) via RBAC; no credential sharing.\r\nΓÇó All writes to ITSM/CRM must be logged with before/after values and user/agent identity.",
+  "KPIs": "ΓÇó CSAT/NPS impact\r\nΓÇó First contact resolution\r\nΓÇó Average handle time (AHT)\r\nΓÇó Compliance score",
+  "Guardrails": "ΓÇó No destructive actions (delete, mass close, config push) without explicit approval and rollback plan.\r\nΓÇó Always update the system of record (ITSM/CRM) before sending external communications.\r\nΓÇó Explain recommendations with evidence links; avoid hallucinated steps or tool outputs.",
+  "Examples": "ΓÇó Prompts: Audit the last 20 cases for compliance against the checklist.\r\nΓÇó Prompts: Generate a QA scorecard for this agent/team.\r\nΓÇó Actions: Produces audit findings with evidence links.\r\nΓÇó Actions: Assigns remediation actions to owners.",
+  "Dependencies": "ΓÇó Authoritative system of record (ITSM/CRM/Order Mgmt) for state changes.\r\nΓÇó Knowledge base/runbooks curated and versioned.",
+  "Impl notes": "ΓÇó Recommended agent type: Tool-using + RAG\r\nΓÇó Runtime pattern: Workflow-driven with human-in-the-loop gates."
+}
+
+=== SECOND ROW (checking personas/techstack) ===
+{
+  "Agent ID": "A-002",
+  "Agent Name": "CoachBot",
+  "Category": "CX Analyst",
+  "Description": "Provides specialized cx operational support capabilities.",
+  "Features": "Tag: From Image; Domain: CX; Process: eTOM: Customer Relationship Management | ITIL: Customer Service Management; Archetype: General; Autonomy: Assistive",
+  "Goals": "ΓÇó Improve operational efficiency and consistency.\r\nΓÇó Reduce MTTR/lead time and increase quality of outcomes.",
+  "DoD (Definition of Done)": "ΓÇó System of record updated with decision/status and evidence.\r\nΓÇó Approvals captured where required; stakeholders notified per policy.",
+  "In scope": "ΓÇó Read relevant records and telemetry to perform assigned function.\r\nΓÇó Write recommendations, validations, and status updates to the system of record.",
+  "Out of scope": "ΓÇó Make irreversible changes (deletes, billing credits, config changes) without explicit approval.\r\nΓÇó Bypass defined process controls or compliance requirements.",
+  "Inputs": "ΓÇó Call/email/chat transcripts\r\nΓÇó Customer profile and entitlements\r\nΓÇó Policy/KB articles",
+  "Outputs": "ΓÇó Quality/compliance scorecards\r\nΓÇó Coaching tips\r\nΓÇó Case updates and summaries",
+  "Triggers": "ΓÇó New contact/case interaction\r\nΓÇó Policy keyword detected (compliance trigger)\r\nΓÇó Daily QA sampling run\r\nΓÇó Invoked by user from a workspace (ITSM/CRM/ChatOps)",
+  "Workflow": "ΓÇó Collect context and required data.\r\nΓÇó Perform the agentΓÇÖs core function and document results.\r\nΓÇó Update the system of record and notify stakeholders.",
+  "Tools": "ΓÇó CRM/CSM\r\nΓÇó Contact center transcripts\r\nΓÇó Policy/KB\r\nΓÇó ChatOps/Email\r\nΓÇó QA dashboards",
+  "Security": "ΓÇó Data sensitivity: Confidential (customer + network data).\r\nΓÇó Minimum required access only (least privilege) via RBAC; no credential sharing.\r\nΓÇó All writes to ITSM/CRM must be logged with before/after values and user/agent identity.",
+  "KPIs": "ΓÇó CSAT/NPS impact\r\nΓÇó First contact resolution\r\nΓÇó Average handle time (AHT)\r\nΓÇó Compliance score",
+  "Guardrails": "ΓÇó No destructive actions (delete, mass close, config push) without explicit approval and rollback plan.\r\nΓÇó Always update the system of record (ITSM/CRM) before sending external communications.\r\nΓÇó Explain recommendations with evidence links; avoid hallucinated steps or tool outputs.",
+  "Examples": "ΓÇó Prompts: Help me with coachbot for this record.\r\nΓÇó Prompts: What do we know so far and what should we do next?\r\nΓÇó Actions: Analyzes context and recommends next steps.\r\nΓÇó Actions: Updates the system of record with findings.",
+  "Dependencies": "ΓÇó Authoritative system of record (ITSM/CRM/Order Mgmt) for state changes.\r\nΓÇó Knowledge base/runbooks curated and versioned.",
+  "Impl notes": "ΓÇó Recommended agent type: Tool-using + RAG\r\nΓÇó Runtime pattern: Workflow-driven with human-in-the-loop gates."
+}

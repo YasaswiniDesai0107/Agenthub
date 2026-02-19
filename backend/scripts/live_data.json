@@ -1,0 +1,84 @@
+﻿{
+  "agentKeys": [
+    "id",
+    "name",
+    "description",
+    "short_description",
+    "domain",
+    "version",
+    "status",
+    "owner_id",
+    "created_by",
+    "updated_by",
+    "view_count",
+    "is_archived",
+    "created_at",
+    "updated_at",
+    "manifest_json",
+    "markdown_content"
+  ],
+  "extraKeys": [
+    "kpis",
+    "goals",
+    "tools",
+    "inputs",
+    "agentId",
+    "inScope",
+    "outputs",
+    "examples",
+    "features",
+    "personas",
+    "triggers",
+    "guardrails",
+    "outOfScope",
+    "problemStatement",
+    "securityControls",
+    "operationalDetails"
+  ],
+  "sampleGoals": [
+    "ΓÇó Assign work to the correct resolver group/workflow on first pass.",
+    "ΓÇó Reduce mean time to triage and misroutes."
+  ],
+  "sampleFeatures": [
+    "Tag: From Image",
+    "Domain: NOC / Assurance"
+  ],
+  "sampleTools": [
+    {
+      "name": "ΓÇó ServiceNow ITSM",
+      "description": ""
+    },
+    {
+      "name": "ΓÇó OSS fault/perf/NMS",
+      "description": ""
+    }
+  ],
+  "sampleKpis": [
+    {
+      "name": "ΓÇó MTTR (minutes/hours)",
+      "target": "TBD"
+    },
+    {
+      "name": "ΓÇó SLA compliance (%)",
+      "target": "TBD"
+    }
+  ],
+  "sampleGuardrails": [
+    "ΓÇó No destructive actions (delete",
+    "mass close"
+  ],
+  "sampleTriggers": [
+    "ΓÇó New alarm/event from OSS/AIOps",
+    "ΓÇó New or updated incident/ticket"
+  ],
+  "sampleExamples": [
+    "ΓÇó Prompts: Categorize and route this incident to the right team.",
+    "ΓÇó Prompts: Why was this assigned to this resolver group?"
+  ],
+  "sampleSecurity": [
+    "ΓÇó Data sensitivity: Confidential (customer + network data).",
+    "ΓÇó Minimum required access only (least privilege) via RBAC"
+  ],
+  "operationalDetails": "Workflow:\nΓÇó Read the work item context (summary, category, signals, attachments).\r\nΓÇó Classify using rules + ML features (keywords, topology, history).\r\nΓÇó Select target queue/group and recommended prio",
+  "agentId": "A-041"
+}
